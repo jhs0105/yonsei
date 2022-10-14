@@ -1,0 +1,124 @@
+@import "vars";
+@import "mixins";
+// @붙이면 가져올수 있다. (import할때는 제목의 언더바를 붙이지 않는다)
+
+body {
+  font-family: "Roboto", "Noto Sans KR", "돋움";
+  color: #111;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+//이미지는 글자처럼 처리된다.
+img {
+  vertical-align: top;
+  //이걸쓰면 이미지 위로 붙여 준다. 안쓰면 이미가 살짝 벌어짐
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.container {
+  width: 1460px;
+  margin: 0 auto;
+}
+
+#header {
+  position: absolute;
+  width: 100%;
+  .container {
+    width: 1840px;
+    display: flex;
+    justify-content: space-between;
+  }
+  #logo {
+    img {
+      width: 200px;
+    }
+  }
+  #gnb {
+    .list {
+      display: flex;
+      > li {
+        position: relative;
+        &:hover {
+          .depth01 {
+            background-color: $main-color;
+            &:after {
+              transform: scaleX(1);
+            }
+            &:before {
+              opacity: 1;
+            }
+          }
+          .depth02 {
+            opacity: 1;
+            pointer-events: auto;
+          }
+        }
+      }
+      .depth01 {
+        color: #fff;
+        font-size: $h4;
+        font-weight: 500;
+        height: 120px; //inline (a) 은 넓이 높이 못가진다. 그러니 flex처리나 block처리 해야 한다.
+        @include flex;
+        padding: 0 50px;
+        transition: all 0.25s ease;
+        &:before {
+          content: "";
+          display: block;
+          height: 2px;
+          background-color: #ffc240;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          opacity: 0;
+        }
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 30px;
+          right: 30px;
+          height: 2px;
+          background-color: #fff;
+          bottom: 10px;
+          transform: scaleX(0);
+          transition: all 0.25s ease;
+        }
+      }
+      .depth02 {
+        text-align: center;
+        color: #fff;
+        background-color: $main-color;
+        padding: 15px 0 30px;
+        font-size: 14px;
+        border-radius: 0 0 20px 20px;
+        opacity: 0;
+        transition: all 0.25s ease;
+        pointer-events: none;
+        position: absolute; //pointer-event에 positon absolute를 주면 반응을 안한다...
+        width: 100%;
+        li {
+          opacity: 0.5;
+          transition: all 0.25s ease;
+          &:hover {
+            opacity: 1;
+          }
+          a {
+            display: block; //block처리 해야 padding을 같는다.
+            padding: 15px 0;
+          }
+        }
+      }
+    }
+  }
+}

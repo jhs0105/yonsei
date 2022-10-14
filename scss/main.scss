@@ -1,0 +1,10 @@
+@import "vars";
+@import "mixins";
+
+//변수사용하면 한번에 바뀌니 편하다.
+
+#main-visual {
+  background-image: url("../images/main/bg_main_visual.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+}
