@@ -23,6 +23,7 @@ button {
   background: none;
   border: none;
   outline: none;
+  color: inherit;
 }
 
 .container {
@@ -37,8 +38,12 @@ button {
     width: 1840px;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start; //자기만의 높이를 가진다.
   }
   #logo {
+    display: flex;
+    align-items: center;
+    height: 120px;
     img {
       width: 200px;
     }
@@ -118,6 +123,69 @@ button {
             padding: 15px 0;
           }
         }
+      }
+    }
+  }
+  .util {
+    display: flex;
+    align-items: center;
+    height: 120px;
+
+    .language {
+      position: relative;
+      background-color: #ccc;
+      padding: 15px;
+      text-align: center;
+      border-radius: 10px;
+      transition: all 0.25s ease;
+      &:hover {
+        color: white;
+        background-color: $main-color;
+        ul {
+          opacity: 1;
+          top: 60px;
+          pointer-events: auto;
+        }
+      }
+      ul {
+        opacity: 0;
+        position: absolute;
+        pointer-events: none;
+        width: 100%;
+        background-color: $main-color;
+        left: 0;
+        top: 80px;
+        border-radius: 10px;
+        transition: all 0.25s ease;
+        color: #fff;
+        li a {
+          display: block;
+          padding: 10px;
+          padding: 10px 0;
+          text-transform: uppercase;
+          font-weight: 700;
+        }
+      }
+      button {
+        text-transform: uppercase;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+
+        &:before {
+          content: "\e894";
+          font-family: "Material Icons"; //font-family를 지정해줘야 생긴다. 이건 google font
+          font-size: 24px;
+          font-weight: 400;
+          margin-right: 10px;
+        }
+      }
+    }
+    .all-menu {
+      margin-left: 40px;
+      .material-icons {
+        font-size: 24px;
       }
     }
   }
