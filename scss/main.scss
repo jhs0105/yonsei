@@ -2,9 +2,149 @@
 @import "mixins";
 
 //변수사용하면 한번에 바뀌니 편하다.
+//swiper쓸때는 li에 클래스 줘서 사용. 이 외에는 li에 클래스 잘 안준다.
 
 #main-visual {
   background-image: url("../images/main/bg_main_visual.jpg");
   background-repeat: no-repeat;
   height: 100vh;
+  overflow: hidden;
+  .mask {
+    width: 1280px;
+    height: 850px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    border-radius: 70px 0 0 0;
+    .main-mask {
+      height: 100%;
+    }
+    li {
+      height: 100%; //부모의 넓이가 있어야 100%가 먹는다.
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .visual01 {
+      background-image: url("../images/main/visual01.png");
+    }
+    .visual02 {
+      background-image: url("../images/main/visual02.png");
+    }
+    .visual03 {
+      background-image: url("../images/main/visual03.jpg");
+    }
+  }
+  > .contents {
+    color: #fff;
+    //margin-top: 500px; //만약 부모의 첫번째 자식요소가 margin을 가지면 여백을 생성시킨다. 이때 부모에게 overflow:hidden을 주면 원상복구된다.
+    position: absolute; //넓이가 자식의 최소단위로 바뀐다. 그러니 꼭 width 100%를 같이 줘야 한다! 그래야 부모의 여백이 생기면서 좌우 배치가 auto처리된다.
+    width: 100%;
+    bottom: 150px;
+    z-index: 2;
+    .title {
+      font-size: 68px;
+      font-weight: 900;
+      text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.8);
+      user-select: none; //사용자 드래그 처리 안됨
+    }
+    .pagination {
+      margin-top: 50px;
+      .swiper-pagination-bullet {
+        opacity: 1;
+        border-radius: 0;
+        width: 50px;
+        height: 4px;
+        background-color: #fff;
+        &-active {
+          background-color: $point-color;
+        }
+      }
+    }
+    .news-and-notice {
+      margin-top: 200px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .news {
+      width: 400px;
+      word-break: keep-all;
+
+      h3 {
+        font-size: $h3;
+        border-bottom: 1px solid #fff;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+      }
+      .desc {
+        line-height: 1.5;
+
+        br {
+          content: ""; //이렇게 쓰면 br 태그가 무시가 된다.
+        }
+      }
+    }
+    .notice {
+      width: 850px;
+      .title-box {
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        h2 {
+          font-size: $h3;
+          font-weight: 500;
+          text-transform: uppercase;
+        }
+      }
+      .contents {
+        background-color: white;
+        padding: 20px;
+        color: #333;
+        position: relative;
+        li {
+          display: flex;
+          align-items: center;
+        }
+        .date {
+          width: 80px;
+          height: 80px;
+          background-color: $point-color;
+          margin-right: 20px;
+          color: white;
+          font-weight: 700;
+          text-align: center;
+          @include flex;
+          flex-direction: column;
+          @include longShadow(50, darken($point-color, 30));
+          overflow: hidden;
+          .num {
+            display: block;
+            font-size: 48px;
+          }
+        }
+        .txt {
+          width: 50%;
+          h3 {
+            font-size: $h4;
+            margin-bottom: 10px;
+          }
+          p {
+            @include ellipsis;
+          }
+        }
+        .btns {
+          position: absolute;
+          right: 30px;
+          top: 50%;
+          transform: translateY(-50%); //자기 높이의 50%이기 때문에 가운데에 간다.
+          z-index: 2;
+          i {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
 }

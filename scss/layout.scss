@@ -33,7 +33,9 @@ button {
 
 #header {
   position: absolute;
+  z-index: 99;
   width: 100%;
+
   .container {
     width: 1840px;
     display: flex;
