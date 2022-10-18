@@ -6,6 +6,7 @@ body {
   font-family: "Roboto", "Noto Sans KR", "돋움";
   color: #111;
   font-size: 16px;
+  min-height: 3000px;
 }
 
 a {
@@ -32,9 +33,30 @@ button {
 }
 
 #header {
-  position: absolute;
+  position: fixed;
   z-index: 99;
   width: 100%;
+  top: 0;
+  // color: #fff;
+  transition: all 0.3s ease;
+  &.on {
+    background-color: white;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    // color: #333;
+    #logo {
+      #logo-white {
+        display: none;
+      }
+      #logo-color {
+        display: block;
+      }
+    }
+    #gnb .list {
+      .depth01 {
+        color: #333;
+      }
+    }
+  }
 
   .container {
     width: 1840px;
@@ -49,6 +71,9 @@ button {
     img {
       width: 200px;
     }
+    #logo-color {
+      display: none;
+    }
   }
   #gnb {
     .list {
@@ -58,6 +83,7 @@ button {
         &:hover {
           .depth01 {
             background-color: $main-color;
+            color: #fff;
             &:after {
               transform: scaleX(1);
             }
