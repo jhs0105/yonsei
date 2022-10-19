@@ -185,8 +185,10 @@
     h2 {
       font-size: $h2 - 4px;
       margin-bottom: 30px;
+      // cursor: pointer; //커서가 손가락 모양으로 바뀐다
       strong {
         font-weight: 700;
+        color: darken($main-color, 20);
       }
     }
     p {
@@ -219,6 +221,7 @@
 
 #research {
   position: relative;
+  overflow: hidden;
   .grey-background {
     width: 40vw;
     height: 80vh;
@@ -227,6 +230,19 @@
     top: 0;
     border-radius: 0 0 200px 0;
   }
+
+  //before 로 만들 수도 있다!
+  // &:before {
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   left: 0;
+  //   top: 0;
+  //   width: 800px;
+  //   height: 800px;
+  //   background-color: #eee;
+  //   border-radius: 0 0 200px 0;
+  // }
 
   .title-box {
     position: absolute;
@@ -298,6 +314,263 @@
               font-size: 24px;
               margin-left: 10px;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+#fund {
+  .fund-list {
+    border-top: 4px solid #333;
+    li {
+      padding: 30px;
+      border-bottom: 1px solid #ccc;
+      &.on {
+        .main {
+          display: none;
+        }
+        .contents {
+          display: flex;
+        }
+      }
+      .main {
+        font-size: 18px;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        p {
+          display: flex;
+          align-items: center;
+          &:before {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: $main-color;
+            margin-right: 10px;
+          }
+        }
+        .date {
+          &:before {
+            content: "\f017";
+            font-family: "FontAwesome";
+            display: inline-block;
+            margin-right: 10px;
+          }
+        }
+      }
+      .contents {
+        display: none;
+        align-items: center;
+
+        .date {
+          width: 100px;
+          height: 100px;
+          background-color: $main-color;
+          color: #fff;
+          @include flex;
+          flex-direction: column;
+          border-radius: 10px;
+          font-size: 20px;
+          font-weight: 700;
+          @include longShadow(50, darken($main-color, 10));
+          overflow: hidden;
+          strong {
+            font-size: $h1;
+          }
+        }
+        a {
+          font-size: 18px;
+          padding: 0 0 0 25px;
+          &:hover {
+            text-decoration: underline;
+          }
+          .title {
+            font-size: $h4;
+            font-weight: 700;
+            margin-bottom: 20px;
+          }
+          .desc {
+            opacity: 0.6;
+          }
+        }
+        .img-box {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
+
+.btn-top {
+  position: fixed;
+  z-index: 2;
+  right: 50px;
+  bottom: -200px;
+  bottom: 50px;
+  width: 60px;
+  height: 60px;
+  background-color: $main-color;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  @include flex;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.2s ease;
+  &.on {
+    bottom: 50px;
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#about {
+  background: url("../images/main/bg_main_about.jpg") no-repeat 50%;
+  background-size: cover;
+  color: #fff;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .title-box {
+    display: flex;
+    flex-direction: column;
+    align-items: start; //자기 크기만큼만 가지게 된다.
+    h2 {
+      font-weight: 900;
+      font-size: 50px;
+      padding: 30px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    p {
+      color: #fff;
+      font-size: 20px;
+    }
+    .since {
+      font-size: 20px;
+      font-weight: 900;
+      opacity: 0.5;
+    }
+  }
+  .organization {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      width: 650px;
+      li {
+        width: calc(100% / 3 - 10px);
+        margin: 5px;
+        a {
+          display: block;
+          background-color: rgba(225, 225, 225, 0.1);
+          font-size: $h4;
+          font-weight: 700;
+          height: 150px;
+          padding: 20px;
+          box-sizing: border-box;
+          position: relative;
+          line-height: 1.3;
+          transition: all 0.25s ease;
+          &:hover {
+            background-color: rgba(225, 225, 225, 1);
+            background-image: url("../images/main/bg_watermark.png");
+            background-position: 0% 100%;
+            background-repeat: no-repeat;
+            color: $main-color;
+            &:before {
+              opacity: 1;
+            }
+          }
+          &:before {
+            content: "";
+            display: block;
+            width: 100%;
+            position: absolute;
+            height: 4px;
+            background-color: $point-color;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transition: all 0.25s ease;
+          }
+          &:after {
+            content: "\f055";
+            font-family: "FontAwesome";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#department {
+  .contents-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    .contents {
+      width: calc(50% - 40px);
+      .title {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 700;
+        border-bottom: 2px solid #333;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        h3 {
+          font-size: $h3;
+          color: $main-color;
+        }
+        a {
+          color: grey;
+          &:after {
+            content: "\f055";
+            font-family: "FontAwesome";
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 20px;
+            color: $main-color;
+          }
+          &:hover {
+            &:after {
+              transform: rotate(180deg);
+              transition: all 0.2s ease;
+            }
+          }
+        }
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -10px; //크기가 커진다.
+        li {
+          width: calc(100% / 3 - 20px);
+          margin: 10px;
+          &:hover a {
+            border-color: $main-color;
+          }
+
+          a {
+            @include flex;
+            flex-direction: column;
+            height: 180px;
+            border: 1px solid #ccc;
+            span {
+              margin-top: 20px;
+              font-weight: 500;
+            }
+          }
+          img {
+            width: 100px;
           }
         }
       }

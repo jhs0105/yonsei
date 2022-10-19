@@ -33,19 +33,44 @@ button {
   width: 100%;
   top: 0;
   transition: all 0.3s ease;
+  height: 120px;
 }
-#header.on {
+#header.on, #header.full {
   background-color: white;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 }
-#header.on #logo #logo-white {
+#header.on #logo #logo-white, #header.full #logo #logo-white {
   display: none;
 }
-#header.on #logo #logo-color {
+#header.on #logo #logo-color, #header.full #logo #logo-color {
   display: block;
 }
-#header.on #gnb .list .depth01 {
+#header.on #gnb .list .depth01, #header.full #gnb .list .depth01 {
   color: #333;
+}
+#header.full {
+  height: 400px;
+  overflow: hidden;
+}
+#header.full #gnb .list .depth01 {
+  transition: none;
+}
+#header.full #gnb .list > li:hover .depth02 {
+  background-color: #0467b3;
+  color: #fff;
+}
+#header.full #gnb .list .depth02 {
+  opacity: 1;
+  pointer-events: auto;
+  background-color: #fff;
+  height: 300px;
+  color: #333;
+  transition: none;
+  border-radius: 0;
+}
+#header.full #gnb .list .depth02 li {
+  opacity: 1;
+  transition: none;
 }
 #header .container {
   width: 1840px;
